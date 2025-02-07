@@ -7,29 +7,25 @@ body {
 #container {
     /* width & height of 480px ensures
        all squares are visible */
-    /* width: 960px; */
-    /* width: 640px; */
-    /* if commented out, square height reduced 
-       to content */
-    /* height: 960px; */
-    /* height: 640px; */
     width: 480px;
     height: 480px;
     display: flex;
     flex-wrap: wrap;
     /* box of squares centered horizontally */
     margin: 0 auto;
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
 #container > div {
-    /* no work */
-    /* flex: 1; */
-    /* WORKS - default */
-    /* flex: auto; */
+    flex: auto; /* WORKS - default */
     /* to include border in overall width */
     box-sizing: border-box;
-    /* width: 60px; */
     border: 1px solid black;
+}
+
+.entered {
+    background-color: blue;
+}
+
+.exited {
+    background-color: none;
 }
