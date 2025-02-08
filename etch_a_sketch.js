@@ -14,7 +14,7 @@ const btnCreateGrid = document.createElement("button");
 btnCreateGrid.textContent = "Create Grid";
 
 document.addEventListener("DOMContentLoaded", (e) => {
-    console.log(e);
+    // console.log(e);
     createGrid(squares, squareWidth);
 });
 
@@ -55,35 +55,16 @@ function getColorFromList() {
     return colorList[Math.floor(Math.random() * colorList.length)];
 }
 
-// will be used to set a random background color on an active (hovering) div,
-// will also do the same as mouse leaves div 
-function getCssRules() {
-    var rules = {};
-    for (var i = 0; i < document.styleSheets.length; ++i) {
-        var cssRules = document.styleSheets[i].cssRules;
-        for (var j = 0; j < cssRules.length; ++j)
-            rules[cssRules[j].selectorText] = cssRules[j];
-    }
-    return rules;
-}
-
-function cssGetClass(name) {
-    var rules = getCssRules();
-    if (!rules.hasOwnProperty(name))
-        throw 'TODO: deal_with_notfound_case';
-    return rules[name];
-}
-
 function createGrid(squares, squareWidth) {
 
     const gridDivs = document.querySelector("#container");
     if (gridDivs.hasChildNodes()) {
-        console.log('children found');
+        // console.log('children found');
         gridDivs.replaceChildren();
-        console.log('container cleared');
+        // console.log('container cleared');
     }
     else {
-        console.log('first time here');
+        // console.log('first time here');
     }
     
     // create a box of square div elements
@@ -98,11 +79,24 @@ function createGrid(squares, squareWidth) {
         square.addEventListener("mouseenter", (e) => {
             // retrieve event target's id
             let divTargetID = e.target.id;
-            console.log(`Before: ${divTargetID}`);
             let divEntered = document.querySelector(`#${divTargetID}`);
 
-            // using CSS background-color: blue
-            divEntered.classList.add("entered");
+            divEntered.style.background = getColorFromList();
+
+            // change background-color 
+            let opacity = divEntered.style.opacity;
+            
+            if (opacity === '') {
+                opacity = 0.1;
+            }
+            else if (parseFloat(opacity) !== 1) {
+                opacity = parseFloat(opacity) + 0.1
+            } 
+            else {
+                // console.log(`opacity is equal to 1, ${opacity}, do nothing`);
+            }
+            
+            divEntered.style.opacity = opacity;
 
         });
 
@@ -111,8 +105,9 @@ function createGrid(squares, squareWidth) {
             // retrieve event source element's id
             let divTargetID = e.srcElement.id;
             let divExited = document.querySelector(`#${divTargetID}`);
-
-            // nothing to do here when using single background color
+            
+            // change background-color 
+            divExited.style.background = getColorFromList();
         });
 
         
