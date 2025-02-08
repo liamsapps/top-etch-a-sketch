@@ -4,6 +4,14 @@ body {
     
 }
 
+button {
+    /* width: 100px; */
+    /* height: 100px; */
+    /* needed for centering with margin */
+    display: block;
+    margin: 0 auto;
+}
+
 #container {
     /* width & height of 480px ensures
        all squares are visible */
@@ -19,7 +27,7 @@ body {
     flex: auto; /* WORKS - default */
     /* to include border in overall width */
     box-sizing: border-box;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .entered {
